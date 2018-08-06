@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>chat sample</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <script>
+        var websocketProtocol = location.protocol == 'http:' ? 'ws:' : 'wss:';
+        document.addEventListener('DOMContentLoaded', () => {
+            var connectUrl = `${websocketProtocol}//${document.location.host}/market`;
+            var webSocket = new WebSocket(connectUrl);
+
+            webSocket.onopen = function (msg) {
+                console.log(msg);
+            }
+
+            webSocket.onerror = function (msg) {
+                console.log(msg);
+            }
+
+            webSocket.onmessage = function (msg) {
+                console.log(msg.data);
+            }
+
+            webSocket.onclose = function (msg) {
+                console.log(msg);
+            }
+
+        });
+    </script>
+</body>
+</html>
